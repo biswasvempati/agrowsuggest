@@ -1,0 +1,104 @@
+{% extends 'layout.html' %} {% block body %}
+
+
+<style>
+  
+  html body {
+    background-color: rgb(206, 206, 228);
+  }
+
+  input[type='file'] {
+  color: transparent;
+  text-align: center;
+
+}
+.center {
+ 
+  justify-content: center;
+  align-items: center;
+}
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 5px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+</style>
+<br /><br />
+  <h2 style="text-align: center; margin: 0px; color: black">
+    <b>Find out which disease has been caught by your plant</b>
+  </h2>
+  <br />
+  <br>
+
+<div style="
+    width: 350px;
+    height: 50rem;
+    margin: 0px auto;
+    color: black;
+    border-radius: 25px;
+    padding: 10px 10px;
+    font-weight: bold;
+  ">
+
+  
+
+
+  <form class="form-signin" method=post enctype=multipart/form-data>
+
+    <h2 class="h4 mb-3 font-weight-normal"><b>Please Upload The Image</b></h2>
+    <div class="center">
+    <input type="file" name="file" class="form-control-file" id="inputfile" onchange="preview_image(event)" style="font-weight: bold;">
+    </div>
+    <br>
+    <br>
+    <img id="output-image" class="rounded mx-auto d-block" />
+    <button class="btn btn-lg btn-primary btn-block" type="submit" style="font-weight: bold;">Predict</button>
+    
+    <div class="row">
+      <div class="column">
+        <img src="{{ url_for('static', filename='images/Apple.jpg') }}" class="img-fluid" alt="Apple" style="width:100%">
+      </div>
+      <div class="column">
+        <img src="{{ url_for('static', filename='images/Blueberry.jpg') }}" class="img-fluid" alt="Blueberry" style="width:100%">
+      </div>
+      <div class="column">
+        <img src="{{ url_for('static', filename='images/Cherry.jpg') }}" class="img-fluid" alt="Cherry" style="width:100%">
+      </div>
+      <div class="column">
+        <img src="{{ url_for('static', filename='images/Corn.jpg') }}" class="img-fluid" alt="Corn" style="width:100%">
+      </div>
+      <div class="column">
+        <img src="{{ url_for('static', filename='images/Grape.jpg') }}" class="img-fluid" alt="Grape" style="width:100%">
+      </div>
+      <div class="column">
+        <img src="{{ url_for('static', filename='images/Orange.jpg') }}" class="img-fluid" alt="Orange" style="width:100%">
+      </div>
+    </div>
+
+  </form>
+</div>
+
+<script type="text/javascript">
+  function preview_image(event) {
+    var reader = new FileReader();
+    reader.onload = function () {
+      var output = document.getElementById('output-image')
+      output.src = reader.result;
+    }
+    reader.readAsDataURL(event.target.files[0]);
+  }
+</script>
+
+</div>
+{% endblock %}
